@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<grammar xml:lang="en" root="yesorno"
+tag-format="semantics/1.0" version="1.0"
+xmlns="http://www.w3.org/2001/06/grammar">
+
+  <rule id="yesorno">
+    <one-of>
+      <item>
+        <ruleref uri="#start"/>
+      </item>
+      <item>
+        <ruleref uri="#quit"/>
+      </item>
+      <item>
+        <ruleref uri="#restart"/>
+      </item>
+      <item>
+        <ruleref uri="#pause"/>
+      </item>
+      <item>
+        <ruleref uri="#resume"/>
+      </item>
+      <item>
+        <ruleref uri="#instructions"/>
+      </item>
+      <item>
+        <ruleref uri="#back"/>
+      </item>
+      <item>
+        <ruleref uri="#mute"/>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="start">
+    <item>START THE GAME</item>
+  </rule>
+
+  <rule id="quit">
+    <item>QUIT THE GAME</item>
+  </rule>
+
+  <rule id="restart">
+    <item>RESTART THE GAME</item>
+  </rule>
+
+  <rule id="pause">
+    <item>PAUSE THE GAME</item>
+  </rule>
+
+  <rule id="resume">
+    <item>RESUME THE GAME</item>
+  </rule>
+
+  <rule id="instructions">
+    <item>LEARN TO PLAY</item>
+  </rule>
+
+  <rule id="back">
+    <item>RETURN TO MENU</item>
+  </rule>
+
+  <rule id="mute">
+    <item>MUTE THE GAME</item>
+  </rule>
+</grammar>

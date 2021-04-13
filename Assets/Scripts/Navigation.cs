@@ -12,4 +12,12 @@ public class Navigation : MonoBehaviour
     public void Tutorial(){
         SceneManager.LoadScene("Tutorial");
     }
+
+    public void Quit(){
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Resume(){
+        // pause - freeze time
+    }
 }
