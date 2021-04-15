@@ -35,11 +35,16 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
-		playerUnit = playerGO.GetComponent<Unit>();
+        // GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
+		// playerUnit = playerGO.GetComponent<Unit>();
+        playerUnit = Instantiate(playerPrefab, playerBattleStation).GetComponent<Unit>();
 
-		GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
-		enemyUnit = enemyGO.GetComponent<Unit>();
+        enemyUnit = Instantiate(enemyPrefab, enemyBattleStation).GetComponent<Unit>();
+
+
+
+		// GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+		// enemyUnit = enemyGO.GetComponent<Unit>();
 
 		dialogText.text = "A wild " + enemyUnit.unitName + " appeared!";
 
@@ -64,6 +69,7 @@ public class BattleSystem : MonoBehaviour
 
         enemyHUD.SetHP(enemyUnit.currentHP);
         dialogText.text = "The attack is successful!";
+        Debug.Log("Successful attack");
 
         yield return new WaitForSeconds(2f);
 
@@ -139,6 +145,7 @@ public class BattleSystem : MonoBehaviour
             return;
         }else{
             StartCoroutine(PlayerAttack());
+            Debug.Log("Attacked");
         }
 
     }
