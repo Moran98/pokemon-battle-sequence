@@ -128,5 +128,5 @@ MonoBehaviour:
   unitName: Arceus
   unitLevel: 100
   damage: 20
-  maxHP: 50
-  currentHP: 50
+  maxHP: 100
+  currentHP: 100

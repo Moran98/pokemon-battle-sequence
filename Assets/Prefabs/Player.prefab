@@ -61,8 +61,8 @@ MonoBehaviour:
   unitName: MewTwo
   unitLevel: 100
   damage: 20
-  maxHP: 50
-  currentHP: 50
+  maxHP: 100
+  currentHP: 100
 --- !u!1 &2696394102167108880
 GameObject:
   m_ObjectHideFlags: 0

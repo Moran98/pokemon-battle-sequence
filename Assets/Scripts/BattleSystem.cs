@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST}
 
@@ -14,6 +14,8 @@ public class BattleSystem : MonoBehaviour
 
 	public Transform playerBattleStation;
 	public Transform enemyBattleStation;
+
+    public System.Random rnd = new System.Random();
 
 	Unit playerUnit;
 	Unit enemyUnit;
@@ -67,7 +69,7 @@ public class BattleSystem : MonoBehaviour
         // Damage the enemy
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
 
-        enemyHUD.SetHP(enemyUnit.currentHP);
+        // enemyHUD.SetHP(enemyUnit.currentHP);
         dialogText.text = "The attack is successful!";
         Debug.Log("Successful attack");
 
@@ -85,12 +87,32 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    IEnumerator PlayerFleeing()
+    {
+
+        dialogText.text = "Fleeing the battle!";
+        Debug.Log("Fleeing Battle");
+
+        yield return new WaitForSeconds(2f);
+
+        int num = rnd.Next(0, 10);
+        Debug.Log(num);
+
+        if(num >= 5 && num <= 10){
+            dialogText.text = "Unable to Flee the battle!";
+
+        } else{
+            SceneManager.LoadScene("MainMenu");
+        }
+
+    }
+
     IEnumerator PlayerHealing()
     {
         // Damage the enemy
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
 
-        playerHUD.SetHP(playerUnit.currentHP);
+        // playerHUD.SetHP(playerUnit.currentHP);
         dialogText.text = "You healed up!";
 
         yield return new WaitForSeconds(2f);
@@ -120,13 +142,13 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-        dialogText.text = enemyUnit.unitName + "attack!";
+        dialogText.text = enemyUnit.unitName + " attacked!";
 
         yield return new WaitForSeconds(1f);
 
         bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
 
-        playerHUD.SetHP(playerUnit.currentHP);
+        // playerHUD.SetHP(playerUnit.currentHP);
 
         if(isDead)
         {
@@ -149,4 +171,28 @@ public class BattleSystem : MonoBehaviour
         }
 
     }
+
+    public void onFleeingButton()
+    {
+        if(state!=BattleState.PLAYERTURN)
+        {
+            return;
+        }else{
+            StartCoroutine(PlayerFleeing());
+        }
+
+    }
+
+    public void onHealingButton()
+    {
+        if(state!=BattleState.PLAYERTURN)
+        {
+            return;
+        }else{
+            StartCoroutine(PlayerHealing());
+        }
+
+    }
+
+
 }

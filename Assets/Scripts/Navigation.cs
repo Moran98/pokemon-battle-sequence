@@ -57,7 +57,7 @@ public class Navigation : MonoBehaviour
         switch (valueString)
         {
             case "START THE GAME":
-                NewGame();
+                Selection();
                 gr.Stop();
                 break;
             case "LEARN TO PLAY":
@@ -83,5 +83,9 @@ public class Navigation : MonoBehaviour
 
     public void Return(){
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Selection(){
+        SceneManager.LoadScene("BattleSelection");
     }
 }
