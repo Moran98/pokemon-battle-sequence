@@ -30,6 +30,27 @@ xmlns="http://www.w3.org/2001/06/grammar">
       <item>
         <ruleref uri="#mute"/>
       </item>
+      <item>
+        <ruleref uri="#battle1"/>
+      </item>
+      <item>
+        <ruleref uri="#battle2"/>
+      </item>
+      <item>
+        <ruleref uri="#battle3"/>
+      </item>
+      <item>
+        <ruleref uri="#battle4"/>
+      </item>
+      <item>
+        <ruleref uri="#attack"/>
+      </item>
+      <item>
+        <ruleref uri="#heal"/>
+      </item>
+      <item>
+        <ruleref uri="#flee"/>
+      </item>
     </one-of>
   </rule>
 
@@ -63,5 +84,33 @@ xmlns="http://www.w3.org/2001/06/grammar">
 
   <rule id="mute">
     <item>MUTE THE GAME</item>
+  </rule>
+
+  <rule id="battle1">
+    <item>BATTLE BROCK</item>
+  </rule>
+
+  <rule id="battle2">
+    <item>BATTLE MISTY</item>
+  </rule>
+
+  <rule id="battle3">
+    <item>BATTLE JAMES</item>
+  </rule>
+
+  <rule id="battle4">
+    <item>BATTLE JESSIE</item>
+  </rule>
+
+  <rule id="attack">
+    <item>ATTACK</item>
+  </rule>
+
+  <rule id="heal">
+    <item>HEAL UP</item>
+  </rule>
+
+  <rule id="flee">
+    <item>FLEE THE BATTLE</item>
   </rule>
 </grammar>

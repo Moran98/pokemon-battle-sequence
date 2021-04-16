@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
+using System.Text;  // for stringbuilder
+using UnityEngine.Windows.Speech;   // grammar recogniser
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST}
 
@@ -27,12 +30,50 @@ public class BattleSystem : MonoBehaviour
 
 	public BattleState state;
 
+     private GrammarRecognizer gr;
+    private string valueString;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        gr = new GrammarRecognizer(Path.Combine(Application.streamingAssetsPath, 
+                                                "SimpleGrammar.xml"), 
+                                    ConfidenceLevel.Low);
+        Debug.Log("Grammar loaded!");
+        gr.OnPhraseRecognized += GR_OnPhraseRecognized;
+        gr.Start();
+        if (gr.IsRunning) Debug.Log("Recogniser running");
+
         state = BattleState.START;
         StartCoroutine(SetupBattle());
+    }
+
+    private void GR_OnPhraseRecognized(PhraseRecognizedEventArgs args)
+    {
+        StringBuilder message = new StringBuilder();
+        Debug.Log("Recognised a phrase");
+        // read the semantic meanings from the args passed in.
+        SemanticMeaning[] meanings = args.semanticMeanings;
+        
+        // use foreach to get all the meanings.
+        foreach(SemanticMeaning meaning in meanings)
+        {
+            string keyString = meaning.key.Trim();
+            valueString = meaning.values[0].Trim();
+            message.Append("Key: " + keyString + ", Value: " + valueString + " ");
+        }
+
+        
+        // use a string builder to create the string and out put to the user
+        Debug.Log(message);
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (gr != null && gr.IsRunning)
+        {
+            gr.OnPhraseRecognized -= GR_OnPhraseRecognized;
+            gr.Stop();
+        }
     }
 
     IEnumerator SetupBattle()
@@ -58,6 +99,24 @@ public class BattleSystem : MonoBehaviour
         state =  BattleState.PLAYERTURN;
         PlayerTurn();
 
+    }
+
+    void Update()
+    {
+        switch (valueString)
+        {
+            case "ATTACK":
+                onAttackButton();
+                break;
+            case "HEAL UP":
+                onHealingButton();
+                break;
+            case "FLEE THE BATTLE":
+                onFleeingButton();
+                break;
+            default:
+                break;
+        }
     }
 
     void PlayerTurn(){
