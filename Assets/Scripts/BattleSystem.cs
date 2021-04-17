@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
-using System.Text;  // for stringbuilder
-using UnityEngine.Windows.Speech;   // grammar recogniser
+using System.Text; 
+using UnityEngine.Windows.Speech;  
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST}
 
@@ -78,16 +78,8 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        // GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
-		// playerUnit = playerGO.GetComponent<Unit>();
         playerUnit = Instantiate(playerPrefab, playerBattleStation).GetComponent<Unit>();
-
         enemyUnit = Instantiate(enemyPrefab, enemyBattleStation).GetComponent<Unit>();
-
-
-
-		// GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
-		// enemyUnit = enemyGO.GetComponent<Unit>();
 
 		dialogText.text = "A wild " + enemyUnit.unitName + " appeared!";
 
