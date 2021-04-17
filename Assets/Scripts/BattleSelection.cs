@@ -79,18 +79,18 @@ public class BattleSelection : MonoBehaviour
     }
 
     public void Brock(){
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Brock");
     }
 
     public void Misty(){
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Misty");
     }
 
     public void James(){
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("James");
     }
 
     public void Jessie(){
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Jessie");
     }
 }

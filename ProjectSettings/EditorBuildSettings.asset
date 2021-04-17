@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/Brock.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleSelection.unity
     guid: 0f3950b756464254687f6b101240604d
+  - enabled: 1
+    path: Assets/Scenes/James.unity
+    guid: 903bf93433649a44ba14a8a2ee68ac63
+  - enabled: 1
+    path: Assets/Scenes/Jessie.unity
+    guid: 3646dfb57565d87408bd60e566791134
+  - enabled: 1
+    path: Assets/Scenes/Misty.unity
+    guid: 082934c95779db34c96b7b3e429ca6d9
   m_configObjects: {}
