@@ -1,22 +1,27 @@
-﻿using UnityEngine.SceneManagement;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;  // for stringbuilder
 using UnityEngine;
-using UnityEngine.Windows.Speech;   // grammar recogniser
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.IO;
+using System.Text; 
+using UnityEngine.Windows.Speech;  
 
-public class BattleSelection : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
+
+    public static bool isPaused=false;
+    public GameObject pauseMenuUI;
+
     private GrammarRecognizer gr;
     private string valueString;
 
     private void Start()
     {
         gr = new GrammarRecognizer(Path.Combine(Application.streamingAssetsPath, 
-                                                "Selection.xml"), 
+                                                "Pause.xml"), 
                                     ConfidenceLevel.Low);
-        Debug.Log("Grammar loaded! - Selection.xml");
+        Debug.Log("Grammar loaded! - Pause.xml");
         gr.OnPhraseRecognized += GR_OnPhraseRecognized;
         gr.Start();
         if (gr.IsRunning) Debug.Log("Recogniser running");
@@ -53,48 +58,45 @@ public class BattleSelection : MonoBehaviour
 
     void Update()
     {
-        Commands();
+       Commands();
     }
 
-    void Commands(){
+    private void Commands(){
         switch (valueString)
         {
-            case "BATTLE BROCK":
-                Brock();
-                gr.Stop();
+            case "PAUSE THE GAME":
+                PauseGame();
+                Debug.Log("PAUSE");
                 break;
-            case "BATTLE MISTY":
-                Misty();
-                gr.Stop();
+            case "RESUME THE GAME":
+                ResumeGame();
                 break;
-
-            case "BATTLE JAMES":
-                James();
-                gr.Stop();
-                break;
-
-            case "BATTLE JESSIE":
-                Jessie();
-                gr.Stop();
+            case "QUIT THE GAME":
+                QuitGame();
                 break;
             default:
                 break;
         }
     }
 
-    public void Brock(){
-        SceneManager.LoadScene("Brock");
+
+    void PauseGame()
+    {
+        isPaused = true;
+        Debug.Log("PAUSE CALLED");
+        pauseMenuUI.SetActive(true);
+        Time.timeScale=0f;
     }
 
-    public void Misty(){
-        SceneManager.LoadScene("Misty");
+    void ResumeGame()
+    {
+        isPaused = false;
+        pauseMenuUI.SetActive(false);
+        Time.timeScale=1f;
     }
 
-    public void James(){
-        SceneManager.LoadScene("James");
-    }
-
-    public void Jessie(){
-        SceneManager.LoadScene("Jessie");
+    void QuitGame()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<grammar xml:lang="en" root="menu"
+tag-format="semantics/1.0" version="1.0"
+xmlns="http://www.w3.org/2001/06/grammar">
+
+  <rule id="menu">
+    <one-of>
+      <item>
+        <ruleref uri="#pause"/>
+      </item>
+      <item>
+        <ruleref uri="#resume"/>
+      </item>
+      <item>
+        <ruleref uri="#quit"/>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="pause">
+    <item>PAUSE THE GAME</item>
+  </rule>
+
+  <rule id="resume">
+    <item>RESUME THE GAME</item>
+  </rule>
+
+  <rule id="quit">
+    <item>QUIT THE GAME</item>
+  </rule>
+</grammar>

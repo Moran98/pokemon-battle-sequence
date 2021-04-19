@@ -97,5 +97,5 @@ MonoBehaviour:
   unitName: Starmie
   unitLevel: 80
   damage: 15
-  maxHP: 100
-  currentHP: 100
+  maxHP: 80
+  currentHP: 80

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<grammar xml:lang="en" root="menu"
+tag-format="semantics/1.0" version="1.0"
+xmlns="http://www.w3.org/2001/06/grammar">
+
+  <rule id="menu">
+    <one-of>
+      <item>
+        <ruleref uri="#battle1"/>
+      </item>
+      <item>
+        <ruleref uri="#battle2"/>
+      </item>
+      <item>
+        <ruleref uri="#battle3"/>
+      </item>
+      <item>
+        <ruleref uri="#battle4"/>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="battle1">
+    <item>BATTLE BROCK</item>
+  </rule>
+
+  <rule id="battle2">
+    <item>BATTLE MISTY</item>
+  </rule>
+
+  <rule id="battle3">
+    <item>BATTLE JAMES</item>
+  </rule>
+
+  <rule id="battle4">
+    <item>BATTLE JESSIE</item>
+  </rule>
+
+</grammar>

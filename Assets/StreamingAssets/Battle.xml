@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<grammar xml:lang="en" root="menu"
+tag-format="semantics/1.0" version="1.0"
+xmlns="http://www.w3.org/2001/06/grammar">
+
+  <rule id="menu">
+    <one-of>
+      <item>
+        <ruleref uri="#attack"/>
+      </item>
+      <item>
+        <ruleref uri="#heal"/>
+      </item>
+      <item>
+        <ruleref uri="#flee"/>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="attack">
+    <item>ATTACK</item>
+  </rule>
+
+  <rule id="heal">
+    <item>HEAL UP</item>
+  </rule>
+
+  <rule id="flee">
+    <item>FLEE THE BATTLE</item>
+  </rule>
+
+</grammar>

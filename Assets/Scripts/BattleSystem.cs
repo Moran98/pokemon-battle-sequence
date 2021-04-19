@@ -23,6 +23,9 @@ public class BattleSystem : MonoBehaviour
 	Unit playerUnit;
 	Unit enemyUnit;
 
+    public static bool isPaused=false;
+    public GameObject pauseMenuUI;
+
 	public Text dialogText;
 
 	public BattleHUD playerHUD;
@@ -30,15 +33,15 @@ public class BattleSystem : MonoBehaviour
 
 	public BattleState state;
 
-     private GrammarRecognizer gr;
-    private string valueString;
+    private GrammarRecognizer gr;
+    [SerializeField] private string valueString;
 
     private void Start()
     {
         gr = new GrammarRecognizer(Path.Combine(Application.streamingAssetsPath, 
-                                                "SimpleGrammar.xml"), 
+                                                "Battle.xml"), 
                                     ConfidenceLevel.Low);
-        Debug.Log("Grammar loaded!");
+        Debug.Log("Grammar loaded! - Battle.xml");
         gr.OnPhraseRecognized += GR_OnPhraseRecognized;
         gr.Start();
         if (gr.IsRunning) Debug.Log("Recogniser running");
@@ -95,16 +98,30 @@ public class BattleSystem : MonoBehaviour
 
     void Update()
     {
+       Commands();
+    }
+
+    private void Commands(){
         switch (valueString)
         {
             case "ATTACK":
                 onAttackButton();
+                valueString = "";
                 break;
             case "HEAL UP":
                 onHealingButton();
+                valueString = "";
                 break;
             case "FLEE THE BATTLE":
                 onFleeingButton();
+                valueString = "";
+                break;
+            case "PAUSE THE GAME":
+                PauseGame();
+                Debug.Log("PAUSE");
+                break;
+            case "RESUME THE GAME":
+                ResumeGame();
                 break;
             default:
                 break;
@@ -113,6 +130,7 @@ public class BattleSystem : MonoBehaviour
 
     void PlayerTurn(){
         dialogText.text = "Choose an action:";
+        Debug.Log("Players Turn");
     }
 
     IEnumerator PlayerAttack()
@@ -120,7 +138,7 @@ public class BattleSystem : MonoBehaviour
         // Damage the enemy
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
 
-        // enemyHUD.SetHP(enemyUnit.currentHP);
+        enemyHUD.SetHP(enemyUnit.currentHP);
         dialogText.text = "The attack is successful!";
         Debug.Log("Successful attack");
 
@@ -161,23 +179,16 @@ public class BattleSystem : MonoBehaviour
     IEnumerator PlayerHealing()
     {
         // Damage the enemy
-        bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
 
-        // playerHUD.SetHP(playerUnit.currentHP);
-        dialogText.text = "You healed up!";
+        playerUnit.Heal(15);
+
+        playerHUD.SetHP(playerUnit.currentHP);
+        dialogText.text = "You healed up by 15!";
 
         yield return new WaitForSeconds(2f);
 
-        if(isDead)
-        {
-            // End
-            state = BattleState.WON;
-            EndBattle();
-        } else{
-            // Enemy turn
-            state = BattleState.ENEMYTURN;
-            StartCoroutine(EnemyTurn());
-        }
+        state = BattleState.ENEMYTURN;
+        StartCoroutine(EnemyTurn());
     }
 
     void EndBattle()
@@ -194,12 +205,13 @@ public class BattleSystem : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         dialogText.text = enemyUnit.unitName + " attacked!";
+        Debug.Log("Enemys Turn");
 
         yield return new WaitForSeconds(1f);
 
         bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
 
-        // playerHUD.SetHP(playerUnit.currentHP);
+        playerHUD.SetHP(playerUnit.currentHP);
 
         if(isDead)
         {
@@ -243,6 +255,23 @@ public class BattleSystem : MonoBehaviour
             StartCoroutine(PlayerHealing());
         }
 
+    }
+
+    // Update is called once per frame
+    void PauseGame()
+    {
+        isPaused = true;
+        Debug.Log("PAUSE CALLED");
+        pauseMenuUI.SetActive(true);
+        Time.timeScale=0f;
+    }
+
+    // Update is called once per frame
+    void ResumeGame()
+    {
+        isPaused = false;
+        pauseMenuUI.SetActive(false);
+        Time.timeScale=1f;
     }
 
 

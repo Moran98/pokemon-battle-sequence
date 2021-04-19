@@ -96,6 +96,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Onix
   unitLevel: 55
-  damage: 5
-  maxHP: 100
-  currentHP: 100
+  damage: 3
+  maxHP: 30
+  currentHP: 25

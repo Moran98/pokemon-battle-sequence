@@ -96,6 +96,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: MewTwo
   unitLevel: 100
-  damage: 50
+  damage: 20
   maxHP: 100
   currentHP: 100
