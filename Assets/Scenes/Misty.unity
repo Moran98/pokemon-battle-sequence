@@ -1589,9 +1589,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63376503e01f0244b1dceb23ced818f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 1306343439}
-  levelText: {fileID: 1511593199}
-  hpSlider: {fileID: 2531252111792844806}
+  nameTxt: {fileID: 1306343439}
+  lvlTxt: {fileID: 1511593199}
+  health: {fileID: 2531252111792844806}
 --- !u!1 &1648407773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,9 +1992,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63376503e01f0244b1dceb23ced818f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 268214951}
-  levelText: {fileID: 2068005560}
-  hpSlider: {fileID: 288330112}
+  nameTxt: {fileID: 268214951}
+  lvlTxt: {fileID: 2068005560}
+  health: {fileID: 288330112}
 --- !u!1 &2068005558
 GameObject:
   m_ObjectHideFlags: 0

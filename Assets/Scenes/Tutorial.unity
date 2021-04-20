@@ -190,7 +190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '- "FLEE" - Attempt to flee the battle.'
+  m_Text: '- "FLEE THE BATTLE" - Attempt to flee the battle.'
 --- !u!222 &391549479
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -412,7 +412,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '- "HEAL" - Restore your pokemons health.'
+  m_Text: '- "HEAL UP" - Restore your pokemons health.'
 --- !u!222 &481802111
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -776,7 +776,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -80, y: -60}
+  m_AnchoredPosition: {x: -80, y: -48.7}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1231600748
@@ -811,7 +811,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '"BROCK" , "MISTY", "JAMES", "JESSIE"'
+  m_Text: "- \"BATTLE\" + one of the following:\n  \"BROCK\" , \"MISTY\", \"JAMES\",
+    \"JESSIE\"\n"
 --- !u!222 &1231600749
 CanvasRenderer:
   m_ObjectHideFlags: 0

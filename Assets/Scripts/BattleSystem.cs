@@ -79,6 +79,8 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    // Setting up the battle and instantiating the player and enemy prefabs
+    // HUDS are displayed depending on which oponent is chosen.
     IEnumerator SetupBattle()
     {
         playerUnit = Instantiate(playerPrefab, playerBattleStation).GetComponent<Unit>();
@@ -138,6 +140,7 @@ public class BattleSystem : MonoBehaviour
         // Damage the enemy
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
 
+        // Calculate the HP
         enemyHUD.SetHP(enemyUnit.currentHP);
         dialogText.text = "The attack is successful!";
         Debug.Log("Successful attack");
@@ -164,6 +167,7 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        // Random number to decide if allowed to flee or not
         int num = rnd.Next(0, 10);
         Debug.Log(num);
 

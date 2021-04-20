@@ -73,6 +73,7 @@ public class Navigation : MonoBehaviour
         }
     }
 
+    // Scene Management
     public void NewGame(){
         SceneManager.LoadScene("Game");
     }
