@@ -106,8 +106,12 @@ public class BattleSystem : MonoBehaviour
     private void Commands(){
         switch (valueString)
         {
-            case "ATTACK":
+            case "ATTACK USING HYPER BEAM":
                 onAttackButton();
+                valueString = "";
+                break;
+            case "ATTACK USING SELF DESTRUCT":
+                onHyperBeam();
                 valueString = "";
                 break;
             case "HEAL UP":
@@ -142,8 +146,44 @@ public class BattleSystem : MonoBehaviour
 
         // Calculate the HP
         enemyHUD.SetHP(enemyUnit.currentHP);
-        dialogText.text = "The attack is successful!";
+        dialogText.text = "Self Destruct is critical!";
         Debug.Log("Successful attack");
+
+        yield return new WaitForSeconds(2f);
+
+        if(isDead)
+        {
+            // End
+            state = BattleState.WON;
+            EndBattle();
+        } else{
+            // Enemy turn
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+    }
+
+    IEnumerator PlayerAttack2()
+    {
+        bool isDead = false;
+
+        int num = rnd.Next(0, 10);
+        Debug.Log(num);
+
+        if(num >= 6 && num <= 10){
+            dialogText.text = "Attack Failed!";
+
+        } else{
+            // Damage the enemy
+            enemyUnit.TakeDamage(playerUnit.hyperBeam);
+
+            // Calculate the HP
+            enemyHUD.SetHP(enemyUnit.currentHP);
+
+            dialogText.text = "Hyper Beam is successful!";
+            Debug.Log("Successful attack");
+        }
+        
 
         yield return new WaitForSeconds(2f);
 
@@ -234,6 +274,18 @@ public class BattleSystem : MonoBehaviour
             return;
         }else{
             StartCoroutine(PlayerAttack());
+            Debug.Log("Attacked");
+        }
+
+    }
+
+    public void onHyperBeam()
+    {
+        if(state!=BattleState.PLAYERTURN)
+        {
+            return;
+        }else{
+            StartCoroutine(PlayerAttack2());
             Debug.Log("Attacked");
         }
 

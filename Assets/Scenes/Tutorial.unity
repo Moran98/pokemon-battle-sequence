@@ -1481,7 +1481,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '- "ATTACK" - Attack the Pokemon.'
+  m_Text: '- "ATTACK USING" + Pokemons Ability.'
 --- !u!222 &1856948710
 CanvasRenderer:
   m_ObjectHideFlags: 0

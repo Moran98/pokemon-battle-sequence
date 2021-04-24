@@ -10,6 +10,9 @@ xmlns="http://www.w3.org/2001/06/grammar">
         <ruleref uri="#attack"/>
       </item>
       <item>
+        <ruleref uri="#attack2"/>
+      </item>
+      <item>
         <ruleref uri="#heal"/>
       </item>
       <item>
@@ -19,7 +22,11 @@ xmlns="http://www.w3.org/2001/06/grammar">
   </rule>
 
   <rule id="attack">
-    <item>ATTACK</item>
+    <item>ATTACK USING HYPER BEAM</item>
+  </rule>
+
+  <rule id="attack2">
+    <item>ATTACK USING SELF DESTRUCT</item>
   </rule>
 
   <rule id="heal">

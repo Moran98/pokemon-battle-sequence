@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour
     public int unitLevel;
 
     public int damage;
+    public int hyperBeam;
 
     public int maxHP;
     public int currentHP;
