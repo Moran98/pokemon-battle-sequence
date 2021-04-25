@@ -106,11 +106,11 @@ public class BattleSystem : MonoBehaviour
     private void Commands(){
         switch (valueString)
         {
-            case "ATTACK USING HYPER BEAM":
+            case "ATTACK USING SELF DESTRUCT":
                 onAttackButton();
                 valueString = "";
                 break;
-            case "ATTACK USING SELF DESTRUCT":
+            case "ATTACK USING HYPER BEAM":
                 onHyperBeam();
                 valueString = "";
                 break;
@@ -122,17 +122,11 @@ public class BattleSystem : MonoBehaviour
                 onFleeingButton();
                 valueString = "";
                 break;
-            case "PAUSE THE GAME":
-                PauseGame();
-                Debug.Log("PAUSE");
-                break;
-            case "RESUME THE GAME":
-                ResumeGame();
-                break;
             default:
                 break;
         }
     }
+
 
     void PlayerTurn(){
         dialogText.text = "Choose an action:";
@@ -240,6 +234,9 @@ public class BattleSystem : MonoBehaviour
         if(state == BattleState.WON)
         {
             dialogText.text = "You won the battle!";
+            isPaused = true;
+            pauseMenuUI.SetActive(true);
+            Time.timeScale=0f;
         } else if(state == BattleState.LOST)
         {
             dialogText.text = "You were defeated";
@@ -314,21 +311,12 @@ public class BattleSystem : MonoBehaviour
     }
 
     // Update is called once per frame
-    void PauseGame()
-    {
-        isPaused = true;
-        Debug.Log("PAUSE CALLED");
-        pauseMenuUI.SetActive(true);
-        Time.timeScale=0f;
+    public void Selection(){
+        SceneManager.LoadScene("BattleSelection");
     }
 
-    // Update is called once per frame
-    void ResumeGame()
-    {
-        isPaused = false;
-        pauseMenuUI.SetActive(false);
-        Time.timeScale=1f;
+    public void QuitGame(){
+        SceneManager.LoadScene("MainMenu");
     }
-
 
 }
